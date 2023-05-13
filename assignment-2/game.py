@@ -12,13 +12,11 @@ FPS = 30
 
 PLAYER_VEL = 30
 
-
 pygame.init()
 
 pygame.display.set_caption("Platformer_game")
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-
 
 def flip(sprites):
     return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
