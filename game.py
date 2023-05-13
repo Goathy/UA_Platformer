@@ -11,13 +11,11 @@ FPS = 30
 
 PLAYER_VEL = 30
 
-
 pygame.init()
 
 pygame.display.set_caption("platformer")
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-
 
 def get_background(name):
     image = pygame.image.load(os.path.join(name))
