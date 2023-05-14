@@ -1,7 +1,6 @@
 import pygame
 
-BG_SOLID_WHITE=(255, 255, 255)
-BG_SOLID_BLACK=(0, 0, 0)
+BACKGROUND="black"
 
 WIDTH = 1000
 HEIGHT = 800
@@ -17,7 +16,7 @@ pygame.display.set_caption('Platformer_game')
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 class Rectangle(pygame.sprite.Sprite):
-    COLOR = (255, 0, 0)
+    COLOR = "red"
 
     def __init__(self, x, y, width, height):
         self.rect = pygame.Rect(x, y, width, height)
@@ -86,7 +85,7 @@ def handle_move(player, key):
             player.reset_x()
 
 def draw(window, player):
-    window.fill(BG_SOLID_BLACK)
+    window.fill(BACKGROUND)
 
     player.draw(window)
 
