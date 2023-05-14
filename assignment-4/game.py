@@ -48,8 +48,8 @@ class Droplet:
         self.size = 1 + random.uniform(0, 1) * 1
 
     def animation_step(self):
-        self.velocity = brightness_map[int(self.y)][int(self.x)][0]
-        self.y += (2.6 - self.velocity) + self.speed
+        self.vel = brightness_map[int(self.y)][int(self.x)][0]
+        self.y += (2.6 - self.vel) + self.speed
         if self.y >= HEIGHT:
             self.y = 0
             self.x = int(random.uniform(0, 1) * WIDTH)
