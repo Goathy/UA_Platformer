@@ -8,6 +8,7 @@ HEIGHT = 800
 FPS = 60
 
 PLAYER_VEL = 15
+PLAYER_STOP = 0
 
 pygame.init()
 
@@ -27,26 +28,14 @@ class Rectangle(pygame.sprite.Sprite):
         self.rect.x += dx
         self.rect.y += dy
 
-    def move_left(self, vel):
-        self.x_vel = -vel
-
-    def move_right(self, vel):
+    def move_x(self, vel):
         self.x_vel = vel
 
-    def move_up(self, vel):
-        self.y_vel = -vel
-
-    def move_down(self, vel):
+    def move_y(self, vel):
         self.y_vel = vel
     
     def loop(self):
         self.move(self.x_vel, self.y_vel)
-
-    def reset_x(self):
-        self.x_vel = 0
-
-    def reset_y(self):
-        self.y_vel = 0
 
     def draw(self, win):    
         pygame.draw.rect(win, self.COLOR, self.rect)
@@ -54,35 +43,35 @@ class Rectangle(pygame.sprite.Sprite):
 def handle_move(player, key):
     if key == pygame.K_LEFT:
         if player.x_vel > 0:
-            player.reset_x()
-            player.reset_y()
+            player.move_x(PLAYER_STOP)
+            player.move_y(PLAYER_STOP)
         else:
-            player.move_left(PLAYER_VEL)
-            player.reset_y()
+            player.move_x(-PLAYER_VEL)
+            player.move_y(PLAYER_STOP)
 
     if key == pygame.K_RIGHT:
         if player.x_vel < 0:
-            player.reset_y()
-            player.reset_x()
+            player.move_x(PLAYER_STOP)
+            player.move_y(PLAYER_STOP)
         else:
-            player.move_right(PLAYER_VEL)
-            player.reset_y()
+            player.move_x(PLAYER_VEL)
+            player.move_y(PLAYER_STOP)
 
     if key == pygame.K_UP:
         if player.y_vel > 0:
-            player.reset_y()
-            player.reset_x()
+            player.move_y(PLAYER_STOP)
+            player.move_x(PLAYER_STOP)
         else:
-            player.move_up(PLAYER_VEL)
-            player.reset_x()
+            player.move_y(-PLAYER_VEL)
+            player.move_x(PLAYER_STOP)
 
     if key == pygame.K_DOWN:
         if player.y_vel < 0:
-            player.reset_y()
-            player.reset_x()
+            player.move_y(PLAYER_STOP)
+            player.move_x(PLAYER_STOP)
         else:
-            player.move_down(PLAYER_VEL)
-            player.reset_x()
+            player.move_y(PLAYER_VEL)
+            player.move_x(PLAYER_STOP)
 
 def draw(window, player):
     window.fill(BACKGROUND)
