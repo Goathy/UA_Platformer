@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 i = 0
 runing = True
 
-direction = 'left'
+direction = 1
 
 while runing:
     clock.tick(FPS)
@@ -24,32 +24,24 @@ while runing:
     window.fill((0,0,0))
     window.blit(bg_img,(i,0))
 
-    if direction == 'left':
-        window.blit(bg_img,(-WIDTH+i,0))
-        window.blit(bg_img,(WIDTH+i,0))
+    print(f"direction: {direction}")
+    
+    window.blit(bg_img,(-WIDTH+i,0))
+    window.blit(bg_img,(WIDTH+i,0))
 
-        if (i==WIDTH):
-            window.blit(bg_img,(-WIDTH+i,0))
-            i=0
-        i+=1
-
-    if direction == 'right':
-        window.blit(bg_img,(-WIDTH+i,0))
-        window.blit(bg_img,(WIDTH+i,0))
-
-        if (i==-WIDTH):
-            window.blit(bg_img,(WIDTH+i,0))
-            i=0
-        i-=1
+    if (i==(WIDTH * direction)):
+        window.blit(bg_img,((WIDTH * direction) + i,0))
+        i=0
+    i+= (1 * direction)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             runing = False
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                direction = 'left'
+                direction = 1
             if event.key == pygame.K_RIGHT:
-                direction = 'right'
+                direction = -1
             if event.key == pygame.K_q:
                 runing = False
 
