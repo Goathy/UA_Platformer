@@ -1,4 +1,5 @@
 import pygame
+from enum import IntEnum
 
 FPS = 60
 
@@ -16,15 +17,17 @@ clock = pygame.time.Clock()
 i = 0
 runing = True
 
-direction = 1
+class Direction(IntEnum):
+    LEFT = -1
+    RIGHT = 1
+
+direction = Direction.LEFT
 
 while runing:
     clock.tick(FPS)
 
     window.fill((0,0,0))
     window.blit(bg_img,(i,0))
-
-    print(f"direction: {direction}")
     
     window.blit(bg_img,(-WIDTH+i,0))
     window.blit(bg_img,(WIDTH+i,0))
@@ -39,9 +42,9 @@ while runing:
             runing = False
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                direction = 1
+                direction = Direction.RIGHT
             if event.key == pygame.K_RIGHT:
-                direction = -1
+                direction = Direction.LEFT
             if event.key == pygame.K_q:
                 runing = False
 
